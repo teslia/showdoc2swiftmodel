@@ -140,8 +140,8 @@ def generate_swift_model(progressed_data):
     code += "\r\n//  https://github.com/teslia/showdoc2swiftmodel"
     code += "\r\n//\r\n//  Filename: " + file_name
     code += "\r\n//  Date: %s/%s/%s"%(dt.year,dt.month,dt.day)
-    code += "\r\n//\r\n\r\nimport Fundation\r\nimport ObjectMapper\r\n"
-    code += "\r\nclass " + MODEL_CLASS_PREFIX + MODEL_CLASS_SHUFIX + ": Mappable {\r\n"
+    code += "\r\n//\r\n\r\nimport Foundation\r\nimport ObjectMapper\r\n"
+    code += "\r\nstruct " + MODEL_CLASS_PREFIX + MODEL_CLASS_SHUFIX + ": Mappable {\r\n"
     for data in progressed_data:
         code += "\r\n    // " + data[2]
         code += "\r\n    var " + data[0] + ": "
@@ -151,8 +151,8 @@ def generate_swift_model(progressed_data):
             code += "Int?"
         else:
             code += "Any?"
-    code += "\r\n\r\n    required init?(map: Map) {}"
-    code += "\r\n\r\n    func mapping(map: Map) {"
+    code += "\r\n\r\n    init?(map: Map) {}"
+    code += "\r\n\r\n    mutating func mapping(map: Map) {"
     for data in progressed_data:
         code += "\r\n        " + data[0] + " <- map[\"" + data[0] + "\"]"
     code += "\r\n    }\r\n}"
